@@ -1,0 +1,19 @@
+<html>
+<head>
+</head>
+<body>
+  <p> Test Client </p>
+  <div id="messages"></div>
+  <script>
+    const webSocket = new WebSocket('ws://localhost:443/');
+    webSocket.onmessage = (event) => {
+      console.log(event)
+      document.getElementById('messages').innerHTML += 
+        'Message from server: ' + event.data + "<br>";
+    };
+    webSocket.addEventListener("open", () => {
+      console.log("We are connected");
+    });
+  </script>
+</body>
+</html>

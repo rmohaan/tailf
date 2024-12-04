@@ -1,0 +1,25 @@
+{
+  "name": "tailf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmohaan/tailf.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmohaan/tailf/issues"
+  },
+  "homepage": "https://github.com/rmohaan/tailf#readme",
+  "dependencies": {
+    "express": "^4.21.1",
+    "readline": "^1.3.0",
+    "ws": "^8.18.0"
+  }
+}
