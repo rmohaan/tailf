@@ -1,20 +1,29 @@
 const fs = require("fs")
 
 function writeToFileInterval(filePath, data, interval) {
-    const writeStream = fs.createWriteStream(filePath, { flags: 'a' }); // Append to file
   
+    const log = fs.openSync(filePath, 'a+')
+    let i = 0;
     let intervalId = setInterval(() => {
-      writeStream.write(data + '\n'); // Write data with a newline
-      writeStream.emit("drain");
+        console.log(i)
+        //fs.write(log, i + '\n');
+        fs.write(log, `${i + '\n'}`, (err, written, buffer) => {
+            if (err) {
+              console.error('Error writing to file:', err);
+            } else {
+              console.log(`User input saved to ${filePath}`);
+            }
+        });
+        i++;
     }, interval);
-  
-    // Optional: Graceful shutdown to close the stream
+
     process.on('SIGINT', () => {
-      clearInterval(intervalId);
-      writeStream.end();
-      console.log('File writing stopped.');
-      process.abort()
+        console.log('File writing stopped.');
+        clearInterval(intervalId);
+        process.exit(0);
     });
   }
   
   module.exports = { writeToFileInterval }
+
+
