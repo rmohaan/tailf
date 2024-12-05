@@ -21,12 +21,18 @@ sockserver.on('connection', ws => {
 
   console.log('New client connected!')
   ws.send('connection established')
-  readLines(watchFile, 10, ws);
+  readLines(watchFile, 10, (err, data) => {
+    if (err) {
+      console.log(err)
+    }
+    data.forEach(line => {
+      ws.send(`${line} <br />`)
+    });
+  });
 
   let watcher = new FileWatcher(watchFile);
 
   watcher.on("newContent", (newContent) => {
-    console.log(`New Content:\n${newContent}`);
     ws.send(`${newContent} <br/>`)
   });
 
