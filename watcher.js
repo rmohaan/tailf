@@ -19,11 +19,8 @@ class FileWatcher extends EventEmitter {
       this.lastPosition = stats.size;
 
       // Watch the file for changes
-      fs.watch(this.filePath, (eventType) => {
-        console.log(`${this.filePath} has changed...`)
-        if (eventType === "change") {
-          this.processNewContent();
-        }
+      fs.watchFile(this.filePath, {interval: 500}, (curr, prev) => {
+        this.processNewContent();
       });
     });
   }

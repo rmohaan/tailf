@@ -24,6 +24,8 @@ function writeToFileInterval(filePath, data, interval) {
     });
   }
   
+  writeToFileInterval("log.txt", 'Current time: ' + new Date().toLocaleString(), 5000); // Write every 5 seconds
+
   module.exports = { writeToFileInterval }
 
 

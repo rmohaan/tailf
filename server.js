@@ -4,7 +4,7 @@ const { WebSocketServer } = require('ws')
 const readLines = require('./bootstrap.js')
 
 const FileWatcher = require("./watcher.js")
-const { writeToFileInterval } = require("./fileWriter.js")
+//const { writeToFileInterval } = require("./fileWriter.js")
 
 const webserver = express()
  .use((req, res) =>
@@ -37,5 +37,5 @@ sockserver.on('connection', ws => {
  })
 
 // Not properly flushing the buffer
-writeToFileInterval(watchFile, 'Current time: ' + new Date().toLocaleString(), 5000); // Write every 5 seconds
+//writeToFileInterval(watchFile, 'Current time: ' + new Date().toLocaleString(), 5000); // Write every 5 seconds
 
